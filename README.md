@@ -10,9 +10,7 @@ This portfolio application is designed to present professional credentials, work
 
 - Modern, responsive design optimized for all device sizes
 - Interactive animations powered by Framer Motion
-- Custom cursor implementation for enhanced user interaction
-- Scroll-based reveal animations and parallax effects
-- Dynamic loading screen with progress indication
+- Smooth scroll progress indicator
 - Contact form integration with EmailJS
 - Project showcase with detailed descriptions
 - Comprehensive skills display organized by categories
@@ -55,13 +53,7 @@ portfolio/
 │   └── photo.jpeg       # Profile image
 ├── src/
 │   ├── components/      # React components
-│   │   ├── AnimateIn/
-│   │   ├── CustomCursor/
-│   │   ├── LoadingScreen/
-│   │   ├── ParallaxSection/
 │   │   ├── ScrollProgress/
-│   │   ├── ScrollRevealText/
-│   │   ├── ScrollStory/
 │   │   ├── Contact.jsx
 │   │   ├── Education.jsx
 │   │   ├── Experience.jsx
@@ -69,10 +61,13 @@ portfolio/
 │   │   ├── Header.jsx
 │   │   ├── Hero.jsx
 │   │   ├── Projects.jsx
-│   │   ├── Skills.jsx
-│   │   └── SectionDivider.jsx
+│   │   ├── ResumeRedirect.jsx
+│   │   ├── SectionDivider.jsx
+│   │   └── Skills.jsx
 │   ├── hooks/           # Custom React hooks
+│   │   └── useScrollProgress.js
 │   ├── utils/           # Utility functions
+│   │   └── animations.js
 │   ├── App.jsx          # Main application component
 │   ├── App.css          # Application styles
 │   ├── index.css        # Global styles
