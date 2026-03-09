@@ -3,125 +3,185 @@ import { motion, useInView } from 'framer-motion';
 
 const Experience = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   const experiences = [
     {
-      title: "LLM Internship",
-      company: "Iglowsoft Pvt Ltd",
-      location: "Chennai",
-      period: "June - July 2025",
-      description: "Fine-tuned LLaMA using LoRA with RAG on TN State Board textbooks for a NEET tutoring system. Deployed a FastAPI backend supporting real-time, structured multilingual Q&A.",
+      title: "Front-End Developer Intern",
+      company: "Reflexlabs.ai",
+      location: "Remote",
+      period: "Oct 2025 — Present",
+      description:
+        "Frontend Developer at Reflex Labs, delivering scalable and visually polished web interfaces aligned with modern UI/UX standards. Focus on performance and user experience.",
       highlights: [
-        "Fine-tuned LLaMA using LoRA technique",
-        "Implemented RAG on TN State Board textbooks",
-        "Built NEET tutoring system",
-        "Deployed FastAPI backend",
-        "Real-time multilingual Q&A support"
-      ]
+        "Scalable web interfaces",
+        "Modern UI/UX standards",
+        "Performance optimization",
+        "Visual design excellence",
+      ],
+      current: true,
     },
     {
-      title: "AI Engineer & Developer",
-      company: "Karunya Hacks - Karunya University",
+      title: "Front-End Developer Intern",
+      company: "Karunya Innovation & Design Studio",
       location: "Coimbatore",
-      period: "Dec 2024 - Present",
-      description: "Developed and deployed multiple Generative AI prototypes through hackathons and collaborative innovation projects.",
+      period: "Jun 2025 — Aug 2025",
+      description:
+        "Built a responsive website for the AIML department using React. Ensured mobile-friendly UI/UX and collaborated with faculty to present academic content effectively.",
       highlights: [
-        "Multiple Generative AI prototypes",
-        "Collaborative innovation projects",
-        "End-to-end project development",
-        "AI system deployment"
-      ]
-    }
+        "React development",
+        "Responsive web design",
+        "Mobile-friendly UI/UX",
+        "Faculty collaboration",
+      ],
+      current: false,
+    },
+    {
+      title: "Generative AI Engineer",
+      company: "Karunya Hacks — Karunya Institute",
+      location: "Coimbatore",
+      period: "Dec 2024 — Present",
+      description:
+        "Developed innovative Generative AI solutions using Python during hackathons, showcasing effective use of deep learning frameworks. Led multiple AI projects and prototypes.",
+      highlights: [
+        "Generative AI solutions",
+        "Deep learning frameworks",
+        "Hackathon projects",
+        "AI prototyping",
+      ],
+      current: true,
+    },
+    {
+      title: "Generative AI Intern",
+      company: "Postulate Info Tech Pvt Ltd",
+      location: "Remote",
+      period: "Jun 2024 — Jul 2024",
+      description:
+        "Fine-tuned pre-trained language models for domain-specific applications, improving performance metrics. Developed generative AI solutions for chatbots and content creation.",
+      highlights: [
+        "Fine-tuned language models",
+        "Domain-specific applications",
+        "Chatbot development",
+        "Synthetic data generation",
+      ],
+      current: false,
+    },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  };
-
   return (
-    <section id="experience" className="section-padding bg-secondary">
+    <section id="experience" className="section-padding bg-secondary" aria-label="Professional Experience">
       <div className="container-custom" ref={ref}>
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          className="section-header"
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h4 className="font-mono text-sm text-muted mb-2">CAREER</h4>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Professional Experience</h2>
-          <div className="w-16 h-[2px] bg-light opacity-50"></div>
+          <span className="section-label">Career</span>
+          <h2 className="section-title">Professional Experience</h2>
+          <p className="text-body-lg text-text-secondary max-w-xl mt-4">
+            Building at the intersection of AI and frontend engineering.
+          </p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="space-y-8"
-        >
-          {experiences.map((exp, i) => (
-            <motion.div
-              key={i}
-              className="border-l-2 border-muted border-opacity-30 pl-6 relative"
-              variants={itemVariants}
-            >
-              <div className="absolute w-3 h-3 bg-secondary border border-light rounded-full -left-[7px] top-1"></div>
-              
-              <div className="bg-primary bg-opacity-40 border border-muted border-opacity-20 p-6">
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3">
-                  <div>
-                    <h3 className="text-xl font-medium mb-1">{exp.title}</h3>
-                    <p className="text-muted mb-1">{exp.company}</p>
-                    <p className="text-sm text-muted opacity-80">{exp.location}</p>
+        {/* Timeline */}
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="absolute left-0 md:left-8 top-0 bottom-0 w-px bg-border-line" aria-hidden="true" />
+
+          <motion.div
+            className="space-y-8"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.15 },
+              },
+            }}
+          >
+            {experiences.map((exp, i) => (
+              <motion.div
+                key={i}
+                className="relative pl-8 md:pl-20"
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+                }}
+              >
+                {/* Timeline dot */}
+                <div
+                  className={`absolute left-0 md:left-8 top-2 w-2.5 h-2.5 rounded-full -translate-x-1/2 border-2 ${
+                    exp.current
+                      ? 'bg-accent border-accent shadow-glow-sm'
+                      : 'bg-primary border-border-hover'
+                  }`}
+                  aria-hidden="true"
+                />
+
+                <div className="card group">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4">
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className="font-display text-heading text-text-primary">
+                          {exp.title}
+                        </h3>
+                        {exp.current && (
+                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-accent-muted text-accent font-medium uppercase tracking-wider">
+                            Current
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-body-sm text-text-secondary">{exp.company}</p>
+                      <p className="text-caption text-text-muted">{exp.location}</p>
+                    </div>
+                    <span className="text-caption font-mono text-text-muted whitespace-nowrap">
+                      {exp.period}
+                    </span>
                   </div>
-                  <span className="text-sm font-mono text-light opacity-70 mt-2 md:mt-0">
-                    {exp.period}
-                  </span>
-                </div>
 
-                <p className="text-muted mb-4 leading-relaxed">
-                  {exp.description}
-                </p>
+                  <p className="text-body-sm text-text-secondary leading-relaxed mb-5">
+                    {exp.description}
+                  </p>
 
-                <div>
-                  <h4 className="text-sm font-mono text-light mb-3">KEY HIGHLIGHTS</h4>
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  <div className="flex flex-wrap gap-2">
                     {exp.highlights.map((highlight, j) => (
-                      <li key={j} className="flex items-start gap-2">
-                        <span className="text-light opacity-50 mt-1">→</span>
-                        <span className="text-sm">{highlight}</span>
-                      </li>
+                      <span
+                        key={j}
+                        className="text-caption px-2.5 py-1 rounded-md bg-primary border border-border-line text-text-muted"
+                      >
+                        {highlight}
+                      </span>
                     ))}
-                  </ul>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
 
-        <motion.div 
-          className="mt-16 flex flex-col md:flex-row items-center justify-between p-6 border border-muted border-opacity-20 bg-primary bg-opacity-40"
+        {/* CTA */}
+        <motion.div
+          className="mt-16 flex flex-col sm:flex-row items-center justify-between gap-6 p-8 rounded-2xl bg-surface/50 border border-border-line"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <div className="mb-6 md:mb-0">
-            <h3 className="text-xl font-medium mb-2">Interested in collaborating?</h3>
-            <p className="text-muted">Let's explore opportunities to work together on AI projects.</p>
+          <div>
+            <h3 className="font-display text-heading text-text-primary mb-1">
+              Interested in collaborating?
+            </h3>
+            <p className="text-body-sm text-text-secondary">
+              Let's explore opportunities to work together on AI projects.
+            </p>
           </div>
-          <a href="#contact" className="btn btn-primary whitespace-nowrap">
+          <a href="#contact" className="btn-primary whitespace-nowrap flex-shrink-0">
             Get In Touch
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
           </a>
         </motion.div>
       </div>

@@ -7,170 +7,151 @@ const Education = () => {
 
   const education = [
     {
-      institution: "Karunya Institute of Technology and Sciences - Coimbatore",
-      degree: "Bachelor of Technology",
-      field: "Computer Science and Engineering (AI Specialization)",
-      period: "Aug 2023 - May 2027"
+      institution: "Karunya Institute of Technology & Sciences",
+      degree: "B.Tech, Computer Science and Engineering",
+      field: "Specialization in Artificial Intelligence",
+      period: "Aug 2023 — Present",
+      location: "Coimbatore",
+      gpa: "GPA: 7.77",
     },
-    {
-      institution: "St. Paul Matricular Higher Secondary School - Cuddalore",
-      degree: "Higher Secondary (12th Standard)",
-      field: "Computer Science - English Medium",
-      period: "April 2023"
-    }
   ];
 
-  const achievements = [
-    "2nd Prize – StartupTN 'தமிழி' Language Technology Hackathon",
-    "Member, Rotaract Club - Karunya University"
-  ];
+  const achievements = ["2nd Prize — Startup TN Thamizhi Hackathon"];
 
-  const certifications = [
-    "Certified in Machine Learning & LangChain by DeepLearning.ai",
-    "NVIDIA Generative AI Course Certification",
-    "Cisco NetAcad - Programming in C and Python Certifications",
-    "Infosys Certifications - IoT Course, Java Course, Gen AI"
-  ];
+  const languages = ["English (Professional)", "Tamil (Native)"];
 
-  const languages = [
-    "Tamil (Native)",
-    "English (Fluent)"
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+      y: 0,
+      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+    },
   };
 
   return (
-    <section id="education" className="section-padding bg-primary">
+    <section id="education" className="section-padding bg-secondary" aria-label="Education and Achievements">
       <div className="container-custom" ref={ref}>
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          className="section-header"
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h4 className="font-mono text-sm text-muted mb-2">BACKGROUND</h4>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Education & Achievements</h2>
-          <div className="w-16 h-[2px] bg-light opacity-50"></div>
+          <span className="section-label">Background</span>
+          <h2 className="section-title">Education & Achievements</h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+          {/* Education — Main column */}
           <motion.div
-            className="md:col-span-2"
-            variants={containerVariants}
+            className="lg:col-span-2 space-y-6"
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
+            variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
           >
-            <h3 className="text-xl font-medium mb-6 flex items-center">
-              <div className="w-4 h-4 border border-light mr-3"></div>
-              Education
-            </h3>
+            {education.map((edu, i) => (
+              <motion.div key={i} className="card" variants={fadeUp}>
+                <div className="flex items-start gap-4">
+                  {/* Icon */}
+                  <div className="w-12 h-12 rounded-xl bg-accent-muted flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 14l9-5-9-5-9 5 9 5z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 14l9-5-9-5-9 5 9 5zm0 0v6.5" />
+                    </svg>
+                  </div>
 
-            <div className="space-y-8">
-              {education.map((edu, i) => (
-                <motion.div
-                  key={i}
-                  className="border-l-2 border-muted border-opacity-30 pl-6 relative"
-                  variants={itemVariants}
-                >
-                  <div className="absolute w-3 h-3 bg-primary border border-light rounded-full -left-[7px] top-1"></div>
-                  <h4 className="text-lg font-medium mb-1">{edu.institution}</h4>
-                  <p className="text-muted mb-1">{edu.degree} {edu.field && `- ${edu.field}`}</p>
-                  {edu.period && <p className="text-sm font-mono text-light opacity-70">{edu.period}</p>}
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Languages */}
-            <div className="mt-8">
-              <h3 className="text-xl font-medium mb-6 flex items-center">
-                <div className="w-4 h-4 border border-light mr-3"></div>
-                Languages
-              </h3>
-
-              <ul className="space-y-4">
-                {languages.map((language, i) => (
-                  <motion.li
-                    key={i}
-                    className="flex items-start"
-                    variants={itemVariants}
-                  >
-                    <span className="text-light mt-1 mr-2 opacity-60">⁕</span>
-                    <span>{language}</span>
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
+                  <div className="flex-1">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
+                      <h3 className="font-display text-heading text-text-primary">
+                        {edu.institution}
+                      </h3>
+                      <span className="text-caption font-mono text-text-muted whitespace-nowrap">
+                        {edu.period}
+                      </span>
+                    </div>
+                    <p className="text-body-sm text-text-secondary mb-1">{edu.degree}</p>
+                    {edu.field && (
+                      <p className="text-body-sm text-accent">{edu.field}</p>
+                    )}
+                    <div className="flex items-center gap-4 mt-3">
+                      {edu.gpa && (
+                        <span className="text-caption px-2.5 py-1 rounded-md bg-primary border border-border-line text-text-secondary font-mono">
+                          {edu.gpa}
+                        </span>
+                      )}
+                      {edu.location && (
+                        <span className="text-caption text-text-muted flex items-center gap-1">
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                          {edu.location}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
 
+          {/* Sidebar — Achievements & Languages */}
           <motion.div
-            variants={containerVariants}
+            className="space-y-6"
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="space-y-8"
+            variants={{ visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } } }}
           >
             {/* Achievements */}
-            <div>
-              <h3 className="text-xl font-medium mb-6 flex items-center">
-                <div className="w-4 h-4 border border-light mr-3"></div>
-                Achievements & Activities
-              </h3>
-
-              <ul className="space-y-4">
+            <motion.div className="card" variants={fadeUp}>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-lg" role="img" aria-label="Trophy">🏆</span>
+                <h3 className="font-display text-body font-semibold text-text-primary">
+                  Achievements
+                </h3>
+              </div>
+              <ul className="space-y-3">
                 {achievements.map((achievement, i) => (
-                  <motion.li
-                    key={i}
-                    className="flex items-start"
-                    variants={itemVariants}
-                  >
-                    <span className="text-light mt-1 mr-2 opacity-60">⁕</span>
-                    <span>{achievement}</span>
-                  </motion.li>
+                  <li key={i} className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
+                    <span className="text-body-sm text-text-secondary">{achievement}</span>
+                  </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
 
-            {/* Certifications */}
-            <div>
-              <h3 className="text-xl font-medium mb-6 flex items-center">
-                <div className="w-4 h-4 border border-light mr-3"></div>
-                Certifications
-              </h3>
-
-              <ul className="space-y-4">
-                {certifications.map((cert, i) => (
-                  <motion.li
-                    key={i}
-                    className="flex items-start"
-                    variants={itemVariants}
-                  >
-                    <span className="text-light mt-1 mr-2 opacity-60">⁕</span>
-                    <span>{cert}</span>
-                  </motion.li>
+            {/* Languages */}
+            <motion.div className="card" variants={fadeUp}>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-lg" role="img" aria-label="Globe">🌐</span>
+                <h3 className="font-display text-body font-semibold text-text-primary">
+                  Languages
+                </h3>
+              </div>
+              <ul className="space-y-3">
+                {languages.map((language, i) => (
+                  <li key={i} className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
+                    <span className="text-body-sm text-text-secondary">{language}</span>
+                  </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
 
+            {/* Continuous Learning Card */}
             <motion.div
-              className="mt-8 p-4 border border-muted border-opacity-20 bg-secondary bg-opacity-30"
-              variants={itemVariants}
+              className="p-5 rounded-xl bg-accent-muted border border-accent/20"
+              variants={fadeUp}
             >
-              <h4 className="text-sm font-medium mb-2">Continuous Learning</h4>
-              <p className="text-muted text-sm">
-                Always exploring new technologies and participating in hackathons
-                to expand my knowledge and practical experience.
+              <h4 className="text-body-sm font-semibold text-accent mb-2">
+                Always Learning
+              </h4>
+              <p className="text-caption text-text-secondary leading-relaxed">
+                Continuously exploring new technologies, participating in hackathons,
+                and contributing to open-source to sharpen my craft.
               </p>
             </motion.div>
           </motion.div>

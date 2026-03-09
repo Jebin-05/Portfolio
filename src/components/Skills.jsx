@@ -3,104 +3,178 @@ import { motion, useInView } from 'framer-motion';
 
 const Skills = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   const categories = [
     {
+      name: "Programming Languages",
+      icon: "⟨/⟩",
+      skills: ["Python", "Java", "JavaScript", "SQL", "C++", "HTML/CSS"],
+    },
+    {
       name: "AI & Machine Learning",
-      skills: ["Machine Learning", "Deep Learning", "Generative AI", "Agentic AI","Data Analysis", "Vision Language Models", "Large Language Models", "Retrieval-Augmented Generation"]
+      icon: "🧠",
+      skills: [
+        "Machine Learning",
+        "Deep Learning",
+        "Vision-Language Models",
+        "Large Language Models",
+        "RAG",
+        "Generative AI",
+        "Agentic AI",
+        "Computer Vision",
+        "Edge AI",
+        "Conversational AI",
+        "Speech-to-Text",
+        "Text-to-Speech",
+        "Semantic Search",
+        "Cognitive Architectures",
+        "Reasoning & Planning",
+        "Memory Systems",
+      ],
     },
     {
-      name: "AI Tools & Frameworks", 
-      skills: ["LangChain","LangGraph","Prompt Engineering", "TTS", "STT", "AI Automation","LlamaIndex","CrewAI", "n8n Automation", "LoRA Fine-tuning","Hugging Face","Vector Databases"]
+      name: "AI Tools & Frameworks",
+      icon: "⚡",
+      skills: [
+        "PyTorch",
+        "TensorFlow",
+        "Keras",
+        "HuggingFace",
+        "LangGraph",
+        "CrewAI",
+        "AutoGen",
+        "Pydantic AI",
+        "Pinecone",
+        "ChromaDB",
+        "Weaviate",
+        "LangChain",
+        "LoRA",
+        "OpenCV",
+        "LlamaIndex",
+        "YOLO",
+        "Ollama",
+        "vLLM",
+        "LiteLLM",
+        "DSPy",
+        "Haystack",
+        "Instructor",
+        "Guardrails AI",
+      ],
     },
     {
-      name: "Backend & DevOps",
-      skills: ["FastAPI", "Docker", "Linux", "MLOps", "DevOps", "Google Cloud Platform", "API Development", "Azure Cloud Platform"]
+      name: "MLOps & Cloud",
+      icon: "☁️",
+      skills: [
+        "AWS",
+        "Azure",
+        "Google Cloud",
+        "Docker",
+        "MLFlow",
+        "Model Evaluation",
+        "Safety Guardrails",
+        "Human-in-the-Loop",
+        "Weights & Biases",
+        "LangSmith",
+        "Prompt Flow",
+      ],
     },
     {
-      name: "Programming & Others",
-      skills: ["Python", "C Programming", "Java", "IoT", "Github", "Model Versioning", "Cloud Deployment"]
-    }
+      name: "Frontend & Design",
+      icon: "🎨",
+      skills: [
+        "React",
+        "Vue.js",
+        "Angular",
+        "Next.js",
+        "Figma",
+        "Responsive Design",
+        "Cross-Browser Compat.",
+        "UI/UX Design",
+        "Prototyping",
+      ],
+    },
+    {
+      name: "Additional Tools",
+      icon: "🔧",
+      skills: ["UiPath", "Neo4j", "LiveKit", "FastAPI", "Streamlit", "Gradio", "LangServe"],
+    },
   ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
+      transition: { staggerChildren: 0.08 },
+    },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+    },
   };
 
   return (
-    <section id="skills" className="section-padding bg-secondary">
+    <section id="skills" className="section-padding bg-primary" aria-label="Technical Skills">
       <div className="container-custom" ref={ref}>
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+        {/* Section Header */}
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h4 className="font-mono text-sm text-muted mb-2">EXPERTISE</h4>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Technical Skills</h2>
-          <div className="w-16 h-[2px] bg-light opacity-50"></div>
+          <span className="section-label">Expertise</span>
+          <h2 className="section-title">Technical Skills</h2>
+          <p className="text-body-lg text-text-secondary max-w-xl mt-4">
+            A comprehensive toolkit spanning AI engineering, cloud infrastructure,
+            and modern frontend development.
+          </p>
         </motion.div>
 
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        {/* Skills Grid */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
           {categories.map((category, i) => (
-            <motion.div 
-              key={i} 
-              className="border border-muted border-opacity-20 bg-primary bg-opacity-40 p-6"
-              variants={itemVariants}
+            <motion.div
+              key={i}
+              className="card group"
+              variants={cardVariants}
             >
-              <h3 className="text-light font-medium mb-4 pb-2 border-b border-muted border-opacity-20">
-                {category.name}
-              </h3>
-              <div className="flex flex-wrap gap-2">
+              {/* Category Header */}
+              <div className="flex items-center gap-3 mb-5 pb-4 border-b border-border-line">
+                <span className="text-lg" role="img" aria-hidden="true">
+                  {category.icon}
+                </span>
+                <h3 className="font-display text-body font-semibold text-text-primary">
+                  {category.name}
+                </h3>
+                <span className="ml-auto text-caption text-text-muted font-mono">
+                  {category.skills.length}
+                </span>
+              </div>
+
+              {/* Skill Tags */}
+              <div className="flex flex-wrap gap-1.5">
                 {category.skills.map((skill, j) => (
-                  <motion.span 
-                    key={j} 
-                    className="text-sm bg-muted bg-opacity-20 text-light px-3 py-1 rounded-sm border border-muted border-opacity-30"
-                    whileHover={{ 
-                      y: -2, 
-                      backgroundColor: "rgba(115, 115, 115, 0.3)", 
-                      transition: { duration: 0.2 } 
-                    }}
+                  <span
+                    key={j}
+                    className="text-caption px-2.5 py-1 rounded-md bg-primary border border-border-line text-text-secondary transition-all duration-200 hover:border-accent/30 hover:text-accent hover:bg-accent-muted cursor-default"
                   >
                     {skill}
-                  </motion.span>
+                  </span>
                 ))}
               </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        <motion.div 
-          className="mt-16 flex flex-col md:flex-row items-center justify-between p-6 border border-muted border-opacity-20 bg-primary bg-opacity-40"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <div className="mb-6 md:mb-0">
-            <h3 className="text-xl font-medium mb-2">Ready to collaborate?</h3>
-            <p className="text-muted">Let's discuss how my skills can help your project.</p>
-          </div>
-          <a href="#contact" className="btn btn-primary whitespace-nowrap">
-            Get in Touch
-            <span className="ml-2">→</span>
-          </a>
         </motion.div>
       </div>
     </section>

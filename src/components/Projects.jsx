@@ -1,257 +1,244 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Projects = () => {
   const [activeProject, setActiveProject] = useState(0);
 
   const projects = [
     {
-      title: "NEET Tutoring System with Fine-tuned LLaMA",
-      description: "Fine-tuned LLaMA using LoRA with RAG on TN State Board textbooks for a NEET tutoring system. Deployed a FastAPI backend supporting real-time, structured multilingual Q&A. This advanced educational AI system provides personalized tutoring assistance for NEET exam preparation with accurate, curriculum-aligned responses.",
-      tech: ["LLaMA", "LoRA Fine-tuning", "RAG", "TTS/ STT", "FastAPI","Docker", "Real-time Processing", "GPU Optimization"],
-      image: "/images/neet-tutoring-preview.png",
-      liveLink: "https://github.com/Lokeshwaran-12/neet-tutoring-llama",
+      title: "Tamil Story Generator",
+      badge: "🏆 Hackathon Winner — StartupTN",
+      description:
+        "Designed a GenAI-based application that generates creative Tamil stories and advertisement content. Integrated a fine-tuned language model with Tamil TTS for voice output, creating a seamless content generation and narration pipeline.",
+      tech: ["Generative AI", "Tamil LLM", "TTS", "Fine-tuning", "Python", "NLP"],
       highlights: [
-        "LLaMA model fine-tuned with LoRA",
-        "RAG on TN State Board curriculum",
-        "Real-time multilingual support",
-        "Structured Q&A for NEET preparation"
-      ]
-    },
-    {
-      title: "Tamil Story Generator using LLM (Hackathon Winner - StartupTN  🏆 )",
-      description: "Designed a GenAI system to generate Tamil stories and advertisement content, integrated with Tamil TTS for voice output. This innovative system combines creative writing capabilities with text-to-speech technology to produce engaging Tamil content for various applications.",
-      tech: ["Generative AI", "Tamil LLM", "TTS","Prompt Engineering", "Python", "NLP", "Content Generation",],
-      image: "/images/tamil-story-preview.png", 
-      liveLink: "https://github.com/Lokeshwaran-12/tamil-story-generator",
-      highlights: [
-        "Tamil story generation",
-        "Advertisement content creation", 
+        "Creative Tamil story generation",
+        "Advertisement content creation",
         "Integrated Tamil TTS output",
-        "Creative AI content system"
-      ]
+        "Fine-tuned language model",
+      ],
+      color: "#6366f1",
     },
     {
-      title: "AI Agent with LlamaIndex for Company Enquiry",
-      description: "Built an intelligent AI agent system with LlamaIndex capabilities to handle company inquiries and provide accurate information about services, policies, and procedures. The system maintains context-aware conversations and provides reliable responses based on company knowledge base.",
-      tech: ["AI Agents", "LlamaIndex", "Company Knowledge Base", "Context Management", "LangChain", "FastAPI", "Azure Deployment","Docker"],
-      image: "/images/company-rag-agent-preview.png",
-      liveLink: "https://github.com/Lokeshwaran-12/company-rag-agent",
-      highlights: [
-        "Context-aware conversations",
-        "Company knowledge integration",
-        "Automated inquiry handling",
-        "Multi-turn dialogue support"
-      ]
-    },
-    {
-      title: "Medical Handwritten Prescription Extraction (VLM)",
-      description: "Fine-tuned a Vision-Language Model to extract handwritten prescriptions and convert them into structured JSON for EMR integration. This system revolutionizes medical data digitization by automatically processing handwritten prescriptions with high accuracy.",
-      tech: ["Vision-Language Model", "Fine-tuning", "Medical NLP", "JSON Processing", "EMR Integration"],
-      image: "/images/prescription-vlm-preview.png",
-      liveLink: "https://github.com/Lokeshwaran-12/prescription-vlm",
-      highlights: [
-        "Handwritten text recognition",
-        "Medical prescription parsing",
-        "Structured JSON output",
-        "EMR system integration"
-      ]
-    },
-    {
-      title: "Tamil Nadu Citizen Services Chatbot",
-      description: "Built a bilingual (Tamil/English) RAG-based chatbot using a fine-tuned Tamil LLM to answer government service queries reliably. The system leverages advanced NLP techniques to understand and respond to citizen queries in both Tamil and English, providing accurate information about government services and procedures.",
-      tech: ["Fine-tuned Tamil LLM", "RAG", "Python", "FastAPI", "Tamil NLP", "Bilingual Processing"],
-      image: "/images/tn-chatbot-preview.png",
-      liveLink: "https://github.com/Lokeshwaran-12/tn-citizen-chatbot",
+      title: "TN Citizen Services Chatbot",
+      badge: "Bilingual AI",
+      description:
+        "Built a smart chatbot that responds to questions about Tamil Nadu government schemes and services in both Tamil and English. Provides reliable answers across multiple departments using a fine-tuned Tamil LLM.",
+      tech: ["Fine-tuned Tamil LLM", "RAG", "Python", "FastAPI", "Tamil NLP"],
       highlights: [
         "Bilingual Tamil-English support",
-        "Fine-tuned Tamil LLM integration",
-        "RAG-based accurate responses",
-        "Government service query handling"
-      ]
+        "Government schemes information",
+        "Fine-tuned Tamil LLM",
+        "Multi-department coverage",
+      ],
+      color: "#818cf8",
     },
     {
-      title: "E-Commerce RAG Retrieval System",
-      description: "Developed an intelligent e-commerce assistant using RAG (Retrieval-Augmented Generation) to help customers find products and get detailed information. The system combines product knowledge base with LLM capabilities to provide personalized shopping recommendations and support.",
-      tech: ["RAG", "Vector Database", "LLM", "CLIP", "Product Search", "FastAPI"],
-      image: "/images/ecommerce-rag-preview.png",
-      liveLink: "https://github.com/Lokeshwaran-12/ecommerce-rag-system",
+      title: "AIML Department Website",
+      badge: "Web Development",
+      description:
+        "Designed and developed a responsive, interactive website for the AIML department. Focused on clean UI/UX design, mobile compatibility, and modern web standards. Collaborated with faculty and students to showcase academic events, research, and achievements.",
+      tech: ["React", "JavaScript", "CSS", "UI/UX Design", "Responsive Design"],
       highlights: [
-        "Product recommendation engine",
-        "RAG-based customer support",
-        "Vector similarity search",
-        "Personalized shopping assistant"
-      ]
-    }
-    
+        "Responsive cross-device design",
+        "Modern UI/UX standards",
+        "Faculty collaboration",
+        "Academic content showcase",
+      ],
+      color: "#a5b4fc",
+    },
+    {
+      title: "R&D Paper Evaluation System",
+      badge: "Agentic AI",
+      description:
+        "Developed an Agentic AI-based R&D paper evaluation system that autonomously analyzes research papers for quality, relevance, and novelty using multi-agent reasoning. Automated scoring, feedback generation, and decision support.",
+      tech: ["Agentic AI", "Multi-agent Systems", "NLP", "Python", "Automated Evaluation"],
+      highlights: [
+        "Autonomous paper analysis",
+        "Quality & novelty assessment",
+        "Automated feedback generation",
+        "Multi-agent reasoning",
+      ],
+      color: "#6366f1",
+    },
+    {
+      title: "Reflexlabs Official Website",
+      badge: "Production",
+      description:
+        "Developed the official Reflex Labs company website, delivering a responsive, high-performance interface aligned with brand identity and modern UI/UX standards.",
+      tech: ["React", "Next.js", "UI/UX Design", "Performance Optimization"],
+      highlights: [
+        "Brand-aligned design",
+        "High-performance interface",
+        "Modern UI/UX standards",
+        "Responsive and scalable",
+      ],
+      color: "#818cf8",
+    },
   ];
-  
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
+  const current = projects[activeProject];
 
   return (
-    <section id="projects" className="section-padding bg-primary">
+    <section id="projects" className="section-padding bg-primary relative" aria-label="Projects">
       <div className="container-custom">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+        {/* Section Header */}
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-8 md:mb-12"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h4 className="font-mono text-sm text-muted mb-2">PORTFOLIO</h4>
-          <h2 className="text-2xl md:text-4xl font-bold mb-4">Featured Projects</h2>
-          <div className="w-16 h-[2px] bg-light opacity-50"></div>
+          <span className="section-label">Selected Work</span>
+          <h2 className="section-title">Featured Projects</h2>
+          <p className="text-body-lg text-text-secondary max-w-xl mt-4">
+            A selection of projects that showcase my expertise in Generative AI, 
+            full-stack development, and intelligent system design.
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8">
-          {/* Project selector - mobile version */}
-          <motion.div 
-            className="md:hidden w-full mb-4"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-xs text-muted">SELECT PROJECT</p>
-              <div className="text-xs text-muted">{activeProject + 1}/{projects.length}</div>
-            </div>
-            <div className="flex overflow-x-auto pb-3 scrollbar-hide snap-x snap-mandatory">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10">
+          {/* Project List — Left Column */}
+          <div className="lg:col-span-4 flex flex-col gap-2">
+            {/* Mobile: horizontal scroll */}
+            <div className="lg:hidden flex gap-3 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-5 px-5">
               {projects.map((project, index) => (
-                <motion.div
+                <button
                   key={index}
-                  variants={itemVariants}
-                  className={`snap-start flex-shrink-0 w-[75%] mr-3 p-4 cursor-pointer transition-all duration-300 ${
-                    activeProject === index 
-                      ? "bg-secondary bg-opacity-50 border border-light border-opacity-20" 
-                      : "bg-secondary bg-opacity-10 border border-muted border-opacity-10"
-                  }`}
                   onClick={() => setActiveProject(index)}
-                  whileTap={{ scale: 0.98 }}
+                  className={`snap-start flex-shrink-0 w-[70%] text-left p-4 rounded-xl border transition-all duration-300 ${
+                    activeProject === index
+                      ? 'bg-surface border-accent/30 shadow-glow-sm'
+                      : 'bg-surface/30 border-border-line hover:border-border-hover'
+                  }`}
                 >
-                  <h3 className={`font-medium text-sm mb-1 ${
-                    activeProject === index ? "text-light" : "text-muted"
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className={`w-2 h-2 rounded-full transition-colors ${
+                      activeProject === index ? 'bg-accent' : 'bg-text-muted'
+                    }`} />
+                    <span className="text-caption text-text-muted">{String(index + 1).padStart(2, '0')}</span>
+                  </div>
+                  <h3 className={`text-body-sm font-semibold transition-colors ${
+                    activeProject === index ? 'text-text-primary' : 'text-text-secondary'
                   }`}>
-                    {project.title.split(" - ")[0]}
+                    {project.title}
                   </h3>
-                  <p className="text-xs text-muted line-clamp-1">
-                    {project.tech.slice(0, 3).join(", ")}
-                  </p>
-                </motion.div>
+                </button>
               ))}
             </div>
-          </motion.div>
 
-          {/* Project selector - desktop version */}
-          <motion.div 
-            className="hidden md:block md:col-span-4" 
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {projects.map((project, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className={`border-l border-muted ${
-                  activeProject === index ? "border-opacity-100" : "border-opacity-20"
-                } p-4 cursor-pointer transition-all duration-300 ${
-                  activeProject === index ? "bg-secondary bg-opacity-30" : ""
-                }`}
-                onClick={() => setActiveProject(index)}
-                whileHover={{
-                  backgroundColor: "rgba(26, 26, 26, 0.3)",
-                  transition: { duration: 0.2 }
-                }}
-              >
-                <h3 className={`font-medium text-sm mb-1 ${
-                  activeProject === index ? "text-light" : "text-muted"
-                }`}>
-                  {project.title.split(" - ")[0]}
-                </h3>
-                <p className="text-xs text-muted line-clamp-1">
-                  {project.tech.slice(0, 3).join(", ")}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Project details */}
-          <motion.div 
-            className="col-span-1 md:col-span-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            key={activeProject}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.div 
-              className="bg-secondary bg-opacity-20 p-4 md:p-6 border border-muted border-opacity-10"
-              initial={{ y: 20 }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-            >
-              <h3 className="text-lg md:text-xl font-semibold mb-3">{projects[activeProject].title}</h3>
-              <p className="text-sm md:text-base text-muted mb-4 md:mb-6 leading-relaxed">
-                {projects[activeProject].description}
-              </p>
-              
-              <div className="mb-4 md:mb-6">
-                <h4 className="text-xs md:text-sm font-mono text-light mb-2 md:mb-3">KEY HIGHLIGHTS</h4>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  {projects[activeProject].highlights.map((highlight, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="text-light opacity-50 mt-1">→</span>
-                      <span className="text-xs md:text-sm">{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div>
-                <h4 className="text-xs md:text-sm font-mono text-light mb-2 md:mb-3">TECHNOLOGIES</h4>
-                <div className="flex flex-wrap gap-2">
-                  {projects[activeProject].tech.map((tech, i) => (
-                    <span 
-                      key={i} 
-                      className="text-xs py-1 px-2 md:px-3 bg-primary border border-muted border-opacity-20 rounded-sm"
-                    >
-                      {tech}
+            {/* Desktop: vertical list */}
+            <div className="hidden lg:flex lg:flex-col gap-2">
+              {projects.map((project, index) => (
+                <motion.button
+                  key={index}
+                  onClick={() => setActiveProject(index)}
+                  className={`text-left p-5 rounded-xl border transition-all duration-300 group ${
+                    activeProject === index
+                      ? 'bg-surface border-accent/30 shadow-glow-sm'
+                      : 'bg-transparent border-border-line hover:bg-surface/30 hover:border-border-hover'
+                  }`}
+                  whileHover={{ x: activeProject === index ? 0 : 4 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className={`w-2 h-2 rounded-full transition-colors ${
+                      activeProject === index ? 'bg-accent' : 'bg-text-muted group-hover:bg-text-secondary'
+                    }`} />
+                    <span className="text-caption text-text-muted font-mono">
+                      {String(index + 1).padStart(2, '0')}
                     </span>
-                  ))}
-                </div>
-              </div>
+                    {project.badge && activeProject === index && (
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-accent-muted text-accent font-medium">
+                        {project.badge}
+                      </span>
+                    )}
+                  </div>
+                  <h3 className={`text-body font-semibold transition-colors ${
+                    activeProject === index ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
+                  }`}>
+                    {project.title}
+                  </h3>
+                  <p className="text-caption text-text-muted mt-1 line-clamp-1">
+                    {project.tech.slice(0, 3).join(' · ')}
+                  </p>
+                </motion.button>
+              ))}
+            </div>
+          </div>
 
-              {projects[activeProject].liveLink && (
-                <div className="mt-6 md:mt-8 flex justify-center md:justify-end">
-                  <a 
-                    href={projects[activeProject].liveLink}
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="font-mono text-xs inline-flex items-center px-5 py-2 md:px-6 md:py-2 border border-light hover:bg-light hover:bg-opacity-5 transition-all duration-300 group"
-                  >
-                    VIEW PROJECT
-                    <svg className="ml-2 w-3 h-3 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                    </svg>
-                  </a>
+          {/* Project Detail — Right Column */}
+          <div className="lg:col-span-8">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeProject}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="bg-surface/50 border border-border-line rounded-2xl p-6 md:p-8 lg:p-10"
+              >
+                {/* Badge */}
+                {current.badge && (
+                  <span className="inline-flex items-center gap-1.5 text-caption font-medium text-accent bg-accent-muted px-3 py-1 rounded-full mb-6">
+                    {current.badge}
+                  </span>
+                )}
+
+                {/* Title */}
+                <h3 className="font-display text-heading md:text-display-sm text-text-primary mb-4">
+                  {current.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-body text-text-secondary leading-relaxed mb-8">
+                  {current.description}
+                </p>
+
+                {/* Highlights */}
+                <div className="mb-8">
+                  <h4 className="text-label uppercase tracking-widest text-text-muted mb-4 font-mono">
+                    Key Highlights
+                  </h4>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {current.highlights.map((highlight, i) => (
+                      <motion.li
+                        key={i}
+                        className="flex items-start gap-2.5"
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.05 + 0.2, duration: 0.3 }}
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
+                        <span className="text-body-sm text-text-secondary">{highlight}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
                 </div>
-              )}
-            </motion.div>
-          </motion.div>
+
+                {/* Technologies */}
+                <div>
+                  <h4 className="text-label uppercase tracking-widest text-text-muted mb-4 font-mono">
+                    Technologies
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {current.tech.map((tech, i) => (
+                      <motion.span
+                        key={i}
+                        className="text-caption px-3 py-1.5 rounded-lg bg-primary border border-border-line text-text-secondary transition-all duration-200 hover:border-accent/30 hover:text-accent"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: i * 0.03 + 0.3, duration: 0.2 }}
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

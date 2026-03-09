@@ -1,183 +1,188 @@
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import Avatar from './Avatar'; // Added import
-
-const DottedText = ({ text }) => {
-  const letters = text.split('');
-
-  return (
-    <div className="pixelated-text">
-      {letters}
-    </div>
-  );
-};
 
 const Hero = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const formatTime = (date) => {
-    return date.toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false
-    });
-  };
-
-  const formatDate = (date) => {
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
-  };
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
+        staggerChildren: 0.12,
+        delayChildren: 0.1,
+      },
+    },
   };
 
   const childVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+    },
   };
 
-  const sections = ['home', 'projects', 'skills', 'education'];
-
-  const scrollToSection = (id) => {
-    document.getElementById(id).scrollIntoView({
-      behavior: 'smooth'
-    });
-  };
+  const socialLinks = [
+    {
+      label: 'GitHub (Jebin-05)',
+      href: 'https://github.com/Jebin-05',
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+        </svg>
+      ),
+    },
+    {
+      label: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/jebin-abraham-1a0097292/',
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+        </svg>
+      ),
+    },
+    {
+      label: 'Email',
+      href: 'mailto:jebinabraham1804@gmail.com',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      ),
+    },
+  ];
 
   return (
-    <section id="home" className="h-screen flex items-center relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <motion.div
-          className="absolute left-1/3 top-1/4 w-72 h-72 rounded-full bg-gradient-to-tr from-[#202020] to-transparent opacity-30 blur-xl"
-          animate={{
-            x: [0, 10, 0],
-            y: [0, -10, 0],
-            scale: [1, 1.05, 1]
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
-        />
-        <motion.div
-          className="absolute right-1/4 bottom-1/3 w-64 h-64 rounded-full bg-gradient-to-bl from-[#252525] to-transparent opacity-20 blur-xl"
-          animate={{
-            x: [0, -15, 0],
-            y: [0, 15, 0],
-            scale: [1, 1.03, 1]
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            repeatType: "reverse"
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center overflow-hidden"
+      aria-label="Hero section"
+    >
+      {/* Background gradient orbs */}
+      <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-accent/[0.04] blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-accent/[0.03] blur-[100px]" />
+        {/* Subtle grid */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(99,102,241,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.3) 1px, transparent 1px)`,
+            backgroundSize: '60px 60px',
           }}
         />
       </div>
 
-      {/* Nothing-styled top bar */}
-      <div className="absolute top-0 left-0 right-0 bg-primary bg-opacity-50 flex justify-between items-center px-6 py-1 border-b border-muted border-opacity-10">
-        <div className="font-mono text-xs text-muted">{formatTime(currentTime)}-{formatDate(currentTime)}</div>
-        <div className="font-mono text-xs text-muted">~LOKESHWARAN S</div>
-      </div>
+      <div className="container-custom pt-24 pb-16 md:pt-0 md:pb-0">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          {/* Left — Text Content */}
+          <motion.div
+            className="flex-1 max-w-2xl"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {/* Label removed */}
 
-      <div className="container-custom"> {/* Main container for hero content */}
+            {/* Headline */}
+            <motion.h1
+              variants={childVariants}
+              className="font-display text-display-lg md:text-display-xl mt-6 mb-2"
+            >
+              <span className="text-text-primary">Hi, I'm </span>
+              <span className="text-gradient">Jebin</span>
+              <span className="text-accent">.</span>
+            </motion.h1>
 
-        {/* Avatar Element - Added Here */}
-        <div className="hidden md:block absolute top-1/2 right-20 lg:right-32 transform -translate-y-1/2 z-10">
-          <Avatar />
-        </div>
+            <motion.h2
+              variants={childVariants}
+              className="font-display text-display-sm md:text-display-md text-text-secondary mb-8"
+            >
+              Generative AI Engineer
+            </motion.h2>
 
-        <motion.div
-          className="max-w-3xl"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.div variants={childVariants} className="mb-4">
-            <div className="inline-block w-12 h-[1px] bg-muted mr-4 align-middle"></div>
-            <span className="text-muted text-sm font-mono">PORTFOLIO </span>
+            {/* Description */}
+            <motion.p
+              variants={childVariants}
+              className="text-body-lg text-text-secondary max-w-xl mb-10 leading-relaxed"
+            >
+              I build intelligent systems — from fine-tuning open-source LLMs to crafting 
+              interactive AI-powered applications. Specializing in end-to-end development 
+              where AI meets elegant interfaces.
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              variants={childVariants}
+              className="flex flex-wrap items-center gap-4 mb-12"
+            >
+              <a href="#projects" className="btn-primary">
+                View Projects
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </a>
+              <a
+                href="/Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+              >
+                Resume
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </a>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div
+              variants={childVariants}
+              className="flex items-center gap-3"
+            >
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target={link.href.startsWith('mailto') ? undefined : '_blank'}
+                  rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+                  className="social-link"
+                  aria-label={link.label}
+                >
+                  {link.icon}
+                </a>
+              ))}
+              <span className="ml-2 text-caption text-text-muted">
+                Let's connect
+              </span>
+            </motion.div>
           </motion.div>
 
-          {/* Nothing-inspired headline with dotted/pixel effect */}
-          <motion.h1
-            variants={childVariants}
-            className="text-4xl md:text-6xl font-bold mb-8"
+          {/* Right — Profile Photo */}
+          <motion.div
+            className="relative flex-shrink-0"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="mb-2 font-mono text-sm tracking-wider text-muted">HELLO, I'M</div>
-            <div className="nothing-headline font-mono tracking-wide">
-              <DottedText text="LOKESHWARAN S" />
+            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-[340px] lg:h-[340px]">
+              {/* Glow behind photo */}
+              <div className="absolute -inset-4 rounded-full bg-accent/10 blur-2xl" aria-hidden="true" />
+              {/* Decorative ring */}
+              <div className="absolute -inset-2 rounded-full border border-accent/20" aria-hidden="true" />
+              {/* Photo */}
+              <img
+                src="/photo.jpeg"
+                alt="Jebin Abraham — Generative AI Engineer"
+                className="relative w-full h-full object-cover rounded-full border-2 border-border-line shadow-strong"
+                loading="eager"
+              />
+              {/* Status badge */}
+              <div className="absolute bottom-4 right-4 flex items-center gap-2 bg-surface/90 backdrop-blur-sm border border-border-line rounded-full px-3 py-1.5 shadow-medium">
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                <span className="text-caption text-text-secondary font-medium">Available</span>
+              </div>
             </div>
-            <div className="mt-3 text-gradient">AI Engineer & LLM Specialist</div>
-          </motion.h1>
-
-          <motion.p
-            variants={childVariants}
-            className="text-muted text-lg md:text-xl mb-10 max-w-xl"
-          >
-            AI Engineer skilled in designing and building end-to-end AI solutions, from LLM and retrieval-augmented generation to scalable, production-ready backend deployment.
-          </motion.p>
-
-          {/* Social media and resume section */}
-          <motion.div
-            variants={childVariants}
-            className="flex flex-wrap gap-6 mb-12"
-          >
-            <a href="https://github.com/Lokeshwaran-12" target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm text-muted hover:text-light transition-colors">
-              <svg className="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.477 2 2 6.477 2 12C2 16.418 4.865 20.166 8.84 21.49C9.34 21.581 9.522 21.276 9.522 21.008C9.522 20.766 9.513 20.011 9.508 19.172C6.726 19.791 6.143 17.898 6.143 17.898C5.699 16.754 5.064 16.451 5.064 16.451C4.187 15.818 5.131 15.829 5.131 15.829C6.104 15.898 6.626 16.868 6.626 16.868C7.498 18.412 8.974 17.945 9.541 17.687C9.63 17.058 9.888 16.592 10.175 16.32C7.956 16.046 5.62 15.233 5.62 11.477C5.62 10.386 6.01 9.491 6.646 8.787C6.546 8.531 6.202 7.57 6.747 6.181C6.747 6.181 7.563 5.908 9.497 7.211C10.29 7.002 11.151 6.898 12.001 6.894C12.849 6.899 13.71 7.002 14.505 7.211C16.437 5.908 17.252 6.181 17.252 6.181C17.798 7.57 17.454 8.531 17.354 8.787C17.991 9.491 18.379 10.386 18.379 11.477C18.379 15.246 16.038 16.044 13.813 16.313C14.172 16.647 14.492 17.308 14.492 18.313C14.492 19.754 14.479 20.674 14.479 21.007C14.479 21.278 14.659 21.586 15.167 21.49C19.137 20.162 22 16.418 22 12C22 6.477 17.523 2 12 2Z" />
-              </svg>
-              GITHUB
-            </a>
-
-            <a href="https://linkedin.com/in/lokeshwaran-s-984035291" target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm text-muted hover:text-light transition-colors">
-              <svg className="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z" />
-              </svg>
-              LINKEDIN
-            </a>
           </motion.div>
-
-          <motion.div
-            variants={childVariants}
-            className="flex flex-wrap gap-5"
-          >
-            <a href="#projects" className="nothing-btn group">
-              VIEW PROJECTS
-              <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-              </svg>
-            </a>
-
-            <a href="/lokesh_resume.pdf" target="_blank" rel="noopener noreferrer" className="nothing-btn">
-              RESUME
-              <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-              </svg>
-            </a>
-          </motion.div>
-        </motion.div>
+        </div>
       </div>
 
 

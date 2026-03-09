@@ -1,280 +1,132 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const ref = useRef(null);
-  const formRef = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const contactInfo = [
+    {
+      label: 'Email',
+      value: 'jebinabraham1804@gmail.com',
+      href: 'mailto:jebinabraham1804@gmail.com',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      ),
+    },
+    {
+      label: 'Phone',
+      value: '+91 7708089768',
+      href: 'tel:+917708089768',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+        </svg>
+      ),
+    },
+    {
+      label: 'Location',
+      value: 'Thoothukudi, India',
+      href: null,
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      ),
+    },
+  ];
 
-  const [status, setStatus] = useState({
-    submitting: false,
-    submitted: false,
-    error: null
-  });
-
-  const handleChange = (e) => {
-    const fieldName = e.target.name;
-    const fieldValue = e.target.value;
-
-    // Map form field names to state property names
-    const stateMapping = {
-      'name': 'name',
-      'email': 'email',
-      'message': 'message'
-    };
-
-    setFormData({
-      ...formData,
-      [stateMapping[fieldName] || fieldName]: fieldValue
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setStatus({ submitting: true, submitted: false, error: null });
-
-    // Format the current date and time in UTC as YYYY-MM-DD HH:MM:SS
-    const now = new Date();
-    const formattedDate = now.toISOString().replace('T', ' ').substring(0, 19);
-
-    // EmailJS configuration
-    const serviceId = import.meta.env.VITE_SERVICE_ID;
-    const templateId = import.meta.env.VITE_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_PUBLIC_KEY;
-
-    // Initialize EmailJS with your public key
-    emailjs.init(publicKey);
-
-    // Prepare form data for EmailJS
-    const templateParams = {
-      from_name: formData.name,
-      from_email: formData.email,
-      message: formData.message,
-      to_email: 'lokeshwarans1221@gmail.com',
-      date_time: formattedDate,
-      user_login: 'Lokeshwaran S'
-    };
-
-    emailjs.send(serviceId, templateId, templateParams)
-      .then((response) => {
-        console.log('Email sent successfully:', response);
-        setStatus({ submitting: false, submitted: true, error: null });
-        setFormData({ name: '', email: '', message: '' });
-
-        setTimeout(() => {
-          setStatus(prev => ({ ...prev, submitted: false }));
-        }, 5000);
-      })
-      .catch((error) => {
-        console.error('Failed to send email:', error);
-        setStatus({ submitting: false, submitted: false, error: 'Failed to send message. Please try again.' });
-      });
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+      y: 0,
+      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+    },
   };
 
   return (
-    <section id="contact" className="section-padding bg-secondary">
+    <section id="contact" className="section-padding bg-primary" aria-label="Contact">
       <div className="container-custom" ref={ref}>
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          className="section-header text-center"
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h4 className="font-mono text-sm text-muted mb-2">GET IN TOUCH</h4>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Contact Me</h2>
-          <div className="w-16 h-[2px] bg-light opacity-50"></div>
+          <span className="section-label justify-center">Get In Touch</span>
+          <h2 className="section-title">Let's Work Together</h2>
+          <p className="text-body-lg text-text-secondary max-w-lg mx-auto mt-4">
+            Have a project in mind or want to discuss collaboration opportunities?
+            I'd love to hear from you.
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="max-w-md mx-auto">
+          {/* Contact Info */}
           <motion.div
-            variants={containerVariants}
+            className="space-y-4"
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
+            variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
           >
-            <motion.h3
-              variants={itemVariants}
-              className="text-xl font-medium mb-6"
-            >
-              Let's start a conversation
-            </motion.h3>
-
-            <motion.p
-              variants={itemVariants}
-              className="text-muted mb-8"
-            >
-              Have a project in mind? Want to discuss collaboration opportunities?
-              I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
-            </motion.p>
-
-            <motion.div
-              variants={containerVariants}
-              className="space-y-6"
-            >
-              <motion.div
-                variants={itemVariants}
-                className="flex items-start"
-              >
-                <div className="mr-4 p-2 border border-muted border-opacity-30">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 8L10.89 13.26C11.2187 13.4793 11.6049 13.5963 12 13.5963C12.3951 13.5963 12.7813 13.4793 13.11 13.26L21 8M5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19Z" stroke="#F5F5F5" strokeOpacity="0.8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+            {contactInfo.map((item, i) => (
+              <motion.div key={i} className="card flex items-start gap-4" variants={fadeUp}>
+                <div className="w-10 h-10 rounded-lg bg-accent-muted flex items-center justify-center flex-shrink-0 text-accent">
+                  {item.icon}
                 </div>
                 <div>
-                  <h4 className="font-medium text-sm mb-1">Email</h4>
-                  <a href="mailto:lokeshwarans1221@gmail.com" className="text-muted hover:text-light transition-colors">
-                    lokeshwarans1221@gmail.com
-                  </a>
+                  <p className="text-caption text-text-muted uppercase tracking-wider mb-1">
+                    {item.label}
+                  </p>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      className="text-body-sm text-text-primary hover:text-accent transition-colors"
+                    >
+                      {item.value}
+                    </a>
+                  ) : (
+                    <p className="text-body-sm text-text-primary">{item.value}</p>
+                  )}
                 </div>
               </motion.div>
+            ))}
 
-              <motion.div
-                variants={itemVariants}
-                className="flex items-start"
-              >
-                <div className="mr-4 p-2 border border-muted border-opacity-30">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 4H9L11 9L8.5 10.5C9.57 12.6715 11.3285 14.43 13.5 15.5L15 13L20 15V19C20 19.5304 19.7893 20.0391 19.4142 20.4142C19.0391 20.7893 18.5304 21 18 21C14.0993 20.763 10.4202 19.1065 7.65683 16.3432C4.8935 13.5798 3.23705 9.90074 3 6C3 5.46957 3.21071 4.96086 3.58579 4.58579C3.96086 4.21071 4.46957 4 5 4" stroke="#F5F5F5" strokeOpacity="0.8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            {/* Social Links */}
+            <motion.div className="pt-4" variants={fadeUp}>
+              <p className="text-caption text-text-muted uppercase tracking-wider mb-3">
+                Connect
+              </p>
+              <div className="flex gap-3">
+                <a
+                  href="https://github.com/Jebin-05"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-link"
+                  aria-label="GitHub (Jebin-05)"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
                   </svg>
-                </div>
-                <div>
-                  <h4 className="font-medium text-sm mb-1">Phone</h4>
-                  <a href="tel:+917548818921" className="text-muted hover:text-light transition-colors">
-                    +91 7548818921
-                  </a>
-                </div>
-              </motion.div>
-
-              <motion.div
-                variants={itemVariants}
-                className="flex items-start"
-              >
-                <div className="mr-4 p-2 border border-muted border-opacity-30">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 19C9 20.1046 7.65685 21 6 21C4.34315 21 3 20.1046 3 19C3 17.8954 4.34315 17 6 17C7.65685 17 9 17.8954 9 19ZM9 19V5C9 3.89543 9.89543 3 11 3H21C22.1046 3 23 3.89543 23 5V19C23 20.1046 22.1046 21 21 21M21 21C19.3431 21 18 20.1046 18 19C18 17.8954 19.3431 17 21 17C22.6569 17 24 17.8954 24 19C24 20.1046 22.6569 21 21 21ZM15 19C15 20.1046 13.6569 21 12 21C10.3431 21 9 20.1046 9 19C9 17.8954 10.3431 17 12 17C13.6569 17 15 17.8954 15 19Z" stroke="#F5F5F5" strokeOpacity="0.8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/jebin-abraham-1a0097292/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-link"
+                  aria-label="LinkedIn"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                   </svg>
-                </div>
-                <div>
-                  <h4 className="font-medium text-sm mb-1">Connect</h4>
-                  <div className="flex gap-3 mt-2">
-                    {/* GitHub */}
-                    <a href="https://github.com/Lokeshwaran-12" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
-                      <span className="sr-only">GitHub</span>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C6.477 2 2 6.477 2 12C2 16.418 4.865 20.166 8.84 21.49C9.34 21.581 9.522 21.276 9.522 21.008C9.522 20.766 9.513 20.011 9.508 19.172C6.726 19.791 6.143 17.898 6.143 17.898C5.699 16.754 5.064 16.451 5.064 16.451C4.187 15.818 5.131 15.829 5.131 15.829C6.104 15.898 6.626 16.868 6.626 16.868C7.498 18.412 8.974 17.945 9.541 17.687C9.63 17.058 9.888 16.592 10.175 16.32C7.956 16.046 5.62 15.233 5.62 11.477C5.62 10.386 6.01 9.491 6.646 8.787C6.546 8.531 6.202 7.57 6.747 6.181C6.747 6.181 7.563 5.908 9.497 7.211C10.29 7.002 11.151 6.898 12.001 6.894C12.849 6.899 13.71 7.002 14.505 7.211C16.437 5.908 17.252 6.181 17.252 6.181C17.798 7.57 17.454 8.531 17.354 8.787C17.991 9.491 18.379 10.386 18.379 11.477C18.379 15.246 16.038 16.044 13.813 16.313C14.172 16.647 14.492 17.308 14.492 18.313C14.492 19.754 14.479 20.674 14.479 21.007C14.479 21.278 14.659 21.586 15.167 21.49C19.137 20.162 22 16.418 22 12C22 6.477 17.523 2 12 2Z" fill="#F5F5F5" />
-                      </svg>
-                    </a>
-
-                    {/* LinkedIn */}
-                    <a href="https://linkedin.com/in/lokeshwaran-s-984035291" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
-                      <span className="sr-only">LinkedIn</span>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20.447 20.452H16.893V14.883C16.893 13.555 16.866 11.846 15.041 11.846C13.217 11.846 12.934 13.291 12.934 14.785V20.452H9.38V9H12.764V10.561H12.813C13.288 9.661 14.448 8.711 16.181 8.711C19.782 8.711 20.448 11.081 20.448 14.166V20.452H20.447ZM5.339 7.433C4.193 7.433 3.274 6.507 3.274 5.368C3.274 4.23 4.194 3.305 5.339 3.305C6.482 3.305 7.404 4.23 7.404 5.368C7.404 6.507 6.483 7.433 5.339 7.433ZM7.119 20.452H3.555V9H7.119V20.452Z" fill="#F5F5F5" />
-                      </svg>
-                    </a>
-
-                    {/* Twitter */}
-                    <a href="https://twitter.com/lokeshwaran_s" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
-                      <span className="sr-only">Twitter</span>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M18.244 2.25H21.552L14.325 10.51L22.827 21.75H16.17L10.956 14.933L4.99 21.75H1.68L9.41 12.915L1.254 2.25H8.08L12.793 8.481L18.244 2.25ZM17.099 19.77H18.979L7.055 4.126H5.028L17.099 19.77Z" fill="#F5F5F5" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
+                </a>
+              </div>
             </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <form ref={formRef} onSubmit={handleSubmit} className="bg-primary bg-opacity-40 border border-muted border-opacity-10 p-6">
-              <h3 className="text-xl font-medium mb-6">Send a Message</h3>
-
-              <div className="mb-4">
-                <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full bg-secondary bg-opacity-40 border border-muted border-opacity-30 p-3 text-light focus:outline-none focus:border-light"
-                  required
-                />
-              </div>
-
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full bg-secondary bg-opacity-40 border border-muted border-opacity-30 p-3 text-light focus:outline-none focus:border-light"
-                  required
-                />
-              </div>
-
-              <div className="mb-6">
-                <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows="5"
-                  className="w-full bg-secondary bg-opacity-40 border border-muted border-opacity-30 p-3 text-light focus:outline-none focus:border-light"
-                  required
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className={`btn btn-primary w-full ${status.submitting ? 'opacity-70 cursor-not-allowed' : ''}`}
-                disabled={status.submitting}
-              >
-                {status.submitting ? 'Sending...' : 'Send Message'}
-              </button>
-
-              {status.submitted && (
-                <div className="mt-4 p-3 bg-green-500 bg-opacity-20 border border-green-500 text-green-300 text-center">
-                  Message sent successfully!
-                </div>
-              )}
-
-              {status.error && (
-                <div className="mt-4 p-3 bg-red-500 bg-opacity-20 border border-red-500 text-red-300 text-center">
-                  {status.error}
-                </div>
-              )}
-            </form>
           </motion.div>
         </div>
       </div>
