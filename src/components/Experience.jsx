@@ -7,62 +7,77 @@ const Experience = () => {
 
   const experiences = [
     {
-      title: "Front-End Developer Intern",
-      company: "Reflexlabs.ai",
-      location: "Remote",
-      period: "Oct 2025 — Present",
+      title: "AI/ML Engineer, Intern",
+      company: "Airman Aeronautics",
+      location: "",
+      period: "May 2026 — Present",
       description:
-        "Frontend Developer at Reflex Labs, delivering scalable and visually polished web interfaces aligned with modern UI/UX standards. Focus on performance and user experience.",
+        "Design and ship AI-enhanced features for production applications, integrating machine learning models into existing engineering workflows. Collaborate with the engineering team to translate product requirements into working AI-powered functionality.",
       highlights: [
-        "Scalable web interfaces",
-        "Modern UI/UX standards",
-        "Performance optimization",
-        "Visual design excellence",
+        "Production AI features",
+        "ML model integration",
+        "Engineering workflows",
+        "Requirements to functionality",
       ],
       current: true,
     },
     {
-      title: "Front-End Developer Intern",
-      company: "Karunya Innovation & Design Studio",
+      title: "Frontend Developer, Intern",
+      company: "Reflexlabs AI",
+      location: "Remote",
+      period: "Oct 2025 — Present",
+      description:
+        "Build responsive, high-performance web interfaces in React and Next.js aligned with modern UI/UX standards. Partner with design and backend teams to ship production-ready features with cross-browser compatibility.",
+      highlights: [
+        "React & Next.js interfaces",
+        "Modern UI/UX standards",
+        "Cross-browser compatibility",
+        "Production-ready delivery",
+      ],
+      current: true,
+    },
+    {
+      title: "Generative AI Engineer, Trainee",
+      company: "Karunya Innovation and Design Studio",
+      location: "Coimbatore",
+      period: "Dec 2024 — Present",
+      description:
+        "Design and build Generative AI solutions in Python using PyTorch and LangChain during institutional hackathons at Karunya Institute of Technology & Sciences.",
+      highlights: [
+        "Generative AI solutions",
+        "PyTorch & LangChain",
+        "Institutional hackathons",
+        "Rapid prototyping",
+      ],
+      current: true,
+    },
+    {
+      title: "Frontend Developer, Intern",
+      company: "Computer Technology Centre — Karunya Institute",
       location: "Coimbatore",
       period: "Jun 2025 — Aug 2025",
       description:
-        "Built a responsive website for the AIML department using React. Ensured mobile-friendly UI/UX and collaborated with faculty to present academic content effectively.",
+        "Built a responsive, interactive website for the AIML department using React, HTML, CSS, and JavaScript.",
       highlights: [
         "React development",
         "Responsive web design",
-        "Mobile-friendly UI/UX",
-        "Faculty collaboration",
+        "Interactive interfaces",
+        "Departmental website",
       ],
       current: false,
     },
     {
-      title: "Generative AI Engineer",
-      company: "Karunya Hacks — Karunya Institute",
-      location: "Coimbatore",
-      period: "Dec 2024 — Present",
-      description:
-        "Developed innovative Generative AI solutions using Python during hackathons, showcasing effective use of deep learning frameworks. Led multiple AI projects and prototypes.",
-      highlights: [
-        "Generative AI solutions",
-        "Deep learning frameworks",
-        "Hackathon projects",
-        "AI prototyping",
-      ],
-      current: true,
-    },
-    {
-      title: "Generative AI Intern",
+      title: "Generative AI Engineer, Intern",
       company: "Postulate Info Tech Pvt Ltd",
       location: "Remote",
       period: "Jun 2024 — Jul 2024",
       description:
-        "Fine-tuned pre-trained language models for domain-specific applications, improving performance metrics. Developed generative AI solutions for chatbots and content creation.",
+        "Fine-tuned pre-trained language models for domain-specific applications, improving output relevance for downstream use cases.",
       highlights: [
         "Fine-tuned language models",
         "Domain-specific applications",
-        "Chatbot development",
-        "Synthetic data generation",
+        "Improved output relevance",
+        "Downstream evaluation",
       ],
       current: false,
     },
@@ -80,7 +95,7 @@ const Experience = () => {
         >
           <span className="section-label">Career</span>
           <h2 className="section-title">Professional Experience</h2>
-          <p className="text-body-lg text-text-secondary max-w-xl mt-4">
+          <p className="prose-serif text-body-lg text-text-secondary max-w-xl mt-4">
             Building at the intersection of AI and frontend engineering.
           </p>
         </motion.div>
@@ -135,14 +150,14 @@ const Experience = () => {
                         )}
                       </div>
                       <p className="text-body-sm text-text-secondary">{exp.company}</p>
-                      <p className="text-caption text-text-muted">{exp.location}</p>
+                      {exp.location && <p className="text-caption text-text-muted">{exp.location}</p>}
                     </div>
                     <span className="text-caption font-mono text-text-muted whitespace-nowrap">
                       {exp.period}
                     </span>
                   </div>
 
-                  <p className="text-body-sm text-text-secondary leading-relaxed mb-5">
+                  <p className="prose-serif text-body-sm text-text-secondary leading-relaxed mb-5">
                     {exp.description}
                   </p>
 

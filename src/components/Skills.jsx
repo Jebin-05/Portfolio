@@ -7,9 +7,9 @@ const Skills = () => {
 
   const categories = [
     {
-      name: "Programming Languages",
+      name: "Languages",
       icon: "⟨/⟩",
-      skills: ["Python", "Java", "JavaScript", "SQL", "C++", "HTML/CSS"],
+      skills: ["Python", "Java"],
     },
     {
       name: "AI & Machine Learning",
@@ -17,87 +17,59 @@ const Skills = () => {
       skills: [
         "Machine Learning",
         "Deep Learning",
-        "Vision-Language Models",
         "Large Language Models",
-        "RAG",
+        "Retrieval-Augmented Generation",
         "Generative AI",
         "Agentic AI",
-        "Computer Vision",
-        "Edge AI",
-        "Conversational AI",
-        "Speech-to-Text",
-        "Text-to-Speech",
-        "Semantic Search",
-        "Cognitive Architectures",
-        "Reasoning & Planning",
-        "Memory Systems",
+        "Natural Language Processing",
+        "Vision-Language Models",
       ],
     },
     {
-      name: "AI Tools & Frameworks",
+      name: "Frameworks & Libraries",
       icon: "⚡",
       skills: [
         "PyTorch",
         "TensorFlow",
-        "Keras",
+        "Scikit-Learn",
         "HuggingFace",
+        "LangChain",
         "LangGraph",
         "CrewAI",
-        "AutoGen",
-        "Pydantic AI",
-        "Pinecone",
-        "ChromaDB",
-        "Weaviate",
-        "LangChain",
-        "LoRA",
-        "OpenCV",
-        "LlamaIndex",
-        "YOLO",
-        "Ollama",
-        "vLLM",
-        "LiteLLM",
-        "DSPy",
+        "Microsoft AutoGen",
+        "Pydantic",
         "Haystack",
-        "Instructor",
-        "Guardrails AI",
       ],
     },
     {
-      name: "MLOps & Cloud",
-      icon: "☁️",
-      skills: [
-        "AWS",
-        "Azure",
-        "Google Cloud",
-        "Docker",
-        "MLFlow",
-        "Model Evaluation",
-        "Safety Guardrails",
-        "Human-in-the-Loop",
-        "Weights & Biases",
-        "LangSmith",
-        "Prompt Flow",
-      ],
+      name: "Vector Databases & Search",
+      icon: "🔎",
+      skills: ["Pinecone", "ChromaDB", "Weaviate", "FAISS", "Milvus", "Qdrant"],
     },
     {
-      name: "Frontend & Design",
+      name: "Frontend Development",
       icon: "🎨",
-      skills: [
-        "React",
-        "Vue.js",
-        "Angular",
-        "Next.js",
-        "Figma",
-        "Responsive Design",
-        "Cross-Browser Compat.",
-        "UI/UX Design",
-        "Prototyping",
-      ],
+      skills: ["React", "Next.js", "HTML/CSS"],
     },
     {
-      name: "Additional Tools",
+      name: "Backend Development",
+      icon: "🔌",
+      skills: ["FastAPI", "REST APIs"],
+    },
+    {
+      name: "Databases",
+      icon: "🗄️",
+      skills: ["PostgreSQL", "MySQL", "MongoDB", "SQLite"],
+    },
+    {
+      name: "Cloud & DevOps",
+      icon: "☁️",
+      skills: ["AWS", "Google Cloud Platform", "Docker"],
+    },
+    {
+      name: "Developer Tools",
       icon: "🔧",
-      skills: ["UiPath", "Neo4j", "LiveKit", "FastAPI", "Streamlit", "Gradio", "LangServe"],
+      skills: ["Git", "GitHub", "Linux"],
     },
   ];
 
@@ -130,15 +102,15 @@ const Skills = () => {
         >
           <span className="section-label">Expertise</span>
           <h2 className="section-title">Technical Skills</h2>
-          <p className="text-body-lg text-text-secondary max-w-xl mt-4">
-            A comprehensive toolkit spanning AI engineering, cloud infrastructure,
-            and modern frontend development.
+          <p className="prose-serif text-body-lg text-text-secondary max-w-xl mt-4">
+            The toolkit I build with — spanning AI engineering, retrieval
+            infrastructure, and modern frontend development.
           </p>
         </motion.div>
 
         {/* Skills Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-start"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}

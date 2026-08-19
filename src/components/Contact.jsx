@@ -60,7 +60,7 @@ const Contact = () => {
         >
           <span className="section-label justify-center">Get In Touch</span>
           <h2 className="section-title">Let's Work Together</h2>
-          <p className="text-body-lg text-text-secondary max-w-lg mx-auto mt-4">
+          <p className="prose-serif text-body-lg text-text-secondary max-w-lg mx-auto mt-4">
             Have a project in mind or want to discuss collaboration opportunities?
             I'd love to hear from you.
           </p>
@@ -115,7 +115,7 @@ const Contact = () => {
                   </svg>
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/jebin-abraham-1a0097292/"
+                  href="https://www.linkedin.com/in/jebinabraham2005"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-link"

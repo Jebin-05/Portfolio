@@ -4,7 +4,7 @@
  * Flippable for alternating direction.
  */
 
-const SectionDivider = ({ flip = false, fromColor = '#0a0a0b', toColor = '#111113' }) => {
+const SectionDivider = ({ flip = false, fromColor = '#1F1E1D', toColor = '#262624' }) => {
   return (
     <div
       className="relative w-full overflow-hidden pointer-events-none select-none"
@@ -33,7 +33,7 @@ const SectionDivider = ({ flip = false, fromColor = '#0a0a0b', toColor = '#11111
         {/* Subtle accent line along the wave crest */}
         <path
           d="M0 40 C240 80 480 0 720 40 C960 80 1200 0 1440 40"
-          stroke="rgba(99, 102, 241, 0.08)"
+          stroke="rgba(217, 119, 87, 0.10)"
           strokeWidth="1"
           fill="none"
         />

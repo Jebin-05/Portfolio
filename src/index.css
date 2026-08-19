@@ -12,13 +12,13 @@
 html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: #27272a #0a0a0b;
+  scrollbar-color: #3A3936 #1F1E1D;
 }
 
 body {
-  background-color: #0a0a0b;
-  color: #fafafa;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #1F1E1D;
+  color: #FAF9F5;
+  font-family: 'Inter Tight', system-ui, -apple-system, sans-serif;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -30,27 +30,27 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0b;
+  background: #1F1E1D;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #27272a;
+  background-color: #3A3936;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #3f3f46;
+  background-color: #4E4C47;
 }
 
 /* ─── Selection ─── */
 ::selection {
-  background: rgba(99, 102, 241, 0.3);
-  color: #fafafa;
+  background: rgba(217, 119, 87, 0.3);
+  color: #FAF9F5;
 }
 
 /* ─── Focus Visible ─── */
 :focus-visible {
-  outline: 2px solid #6366f1;
+  outline: 2px solid #D97757;
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -79,10 +79,15 @@ body {
     @apply mb-16 md:mb-20;
   }
 
+  /* Long-form prose — Source Serif 4 */
+  .prose-serif {
+    @apply font-serif;
+  }
+
   /* Typography */
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #6366f1 0%, #818cf8 50%, #a5b4fc 100%);
+    background-image: linear-gradient(135deg, #D97757 0%, #E08D6F 50%, #EBB39C 100%);
   }
 
   /* Buttons */

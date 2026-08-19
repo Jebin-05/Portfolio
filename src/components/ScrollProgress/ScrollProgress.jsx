@@ -20,7 +20,7 @@ const ScrollProgress = () => {
         className="h-full w-full origin-left"
         style={{
           transform: 'scaleX(0)',
-          background: 'linear-gradient(90deg, #6366f1, #818cf8)',
+          background: 'linear-gradient(90deg, #D97757, #EBB39C)',
           boxShadow: '4px 0 16px rgba(99, 102, 241, 0.4), 0 0 8px rgba(99, 102, 241, 0.2)',
           willChange: 'transform',
         }}

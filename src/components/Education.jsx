@@ -9,10 +9,10 @@ const Education = () => {
     {
       institution: "Karunya Institute of Technology & Sciences",
       degree: "B.Tech, Computer Science and Engineering",
-      field: "Specialization in Artificial Intelligence",
-      period: "Aug 2023 — Present",
+      field: "Artificial Intelligence",
+      period: "Aug 2023 — 2027 (Expected)",
       location: "Coimbatore",
-      gpa: "GPA: 7.77",
+      gpa: "GPA: 7.81 / 10",
     },
   ];
 

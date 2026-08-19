@@ -6,52 +6,38 @@ const Projects = () => {
 
   const projects = [
     {
-      title: "Tamil Story Generator",
-      badge: "🏆 Hackathon Winner — StartupTN",
+      title: "Journal Paper Assistant",
+      badge: "Open Source",
       description:
-        "Designed a GenAI-based application that generates creative Tamil stories and advertisement content. Integrated a fine-tuned language model with Tamil TTS for voice output, creating a seamless content generation and narration pipeline.",
-      tech: ["Generative AI", "Tamil LLM", "TTS", "Fine-tuning", "Python", "NLP"],
+        "An open-source alternative to jenni.ai, built around a LangChain-based reviewing agent that validates research papers before submission. Also supports writing a paper from scratch, guiding the author from outline through to a submission-ready draft.",
+      tech: ["LangChain", "LLMs", "Agentic AI", "Python", "NLP", "RAG"],
       highlights: [
-        "Creative Tamil story generation",
-        "Advertisement content creation",
-        "Integrated Tamil TTS output",
-        "Fine-tuned language model",
+        "LangChain reviewing agent",
+        "Pre-submission validation",
+        "Write a paper from scratch",
+        "Open-source alternative to jenni.ai",
       ],
-      color: "#6366f1",
+      color: "#D97757",
     },
     {
-      title: "TN Citizen Services Chatbot",
-      badge: "Bilingual AI",
+      title: "Reflexlabs Official Website",
+      badge: "Production",
       description:
-        "Built a smart chatbot that responds to questions about Tamil Nadu government schemes and services in both Tamil and English. Provides reliable answers across multiple departments using a fine-tuned Tamil LLM.",
-      tech: ["Fine-tuned Tamil LLM", "RAG", "Python", "FastAPI", "Tamil NLP"],
+        "Developed and deployed the company's official website in React and Next.js, delivering a responsive, high-performance interface aligned with brand identity.",
+      tech: ["React", "Next.js", "UI/UX Design", "Performance Optimization"],
       highlights: [
-        "Bilingual Tamil-English support",
-        "Government schemes information",
-        "Fine-tuned Tamil LLM",
-        "Multi-department coverage",
+        "Brand-aligned design",
+        "High-performance interface",
+        "Responsive and scalable",
+        "Developed and deployed",
       ],
-      color: "#818cf8",
-    },
-    {
-      title: "AIML Department Website",
-      badge: "Web Development",
-      description:
-        "Designed and developed a responsive, interactive website for the AIML department. Focused on clean UI/UX design, mobile compatibility, and modern web standards. Collaborated with faculty and students to showcase academic events, research, and achievements.",
-      tech: ["React", "JavaScript", "CSS", "UI/UX Design", "Responsive Design"],
-      highlights: [
-        "Responsive cross-device design",
-        "Modern UI/UX standards",
-        "Faculty collaboration",
-        "Academic content showcase",
-      ],
-      color: "#a5b4fc",
+      color: "#E08D6F",
     },
     {
       title: "R&D Paper Evaluation System",
       badge: "Agentic AI",
       description:
-        "Developed an Agentic AI-based R&D paper evaluation system that autonomously analyzes research papers for quality, relevance, and novelty using multi-agent reasoning. Automated scoring, feedback generation, and decision support.",
+        "An agentic AI system that uses multi-agent reasoning to autonomously evaluate research papers for quality, relevance, and novelty — automating scoring, feedback generation, and decision support.",
       tech: ["Agentic AI", "Multi-agent Systems", "NLP", "Python", "Automated Evaluation"],
       highlights: [
         "Autonomous paper analysis",
@@ -59,21 +45,35 @@ const Projects = () => {
         "Automated feedback generation",
         "Multi-agent reasoning",
       ],
-      color: "#6366f1",
+      color: "#EBB39C",
     },
     {
-      title: "Reflexlabs Official Website",
-      badge: "Production",
+      title: "Tamil Story Generator",
+      badge: "🏆 2nd Prize — Startup TN Thamizhi",
       description:
-        "Developed the official Reflex Labs company website, delivering a responsive, high-performance interface aligned with brand identity and modern UI/UX standards.",
-      tech: ["React", "Next.js", "UI/UX Design", "Performance Optimization"],
+        "A Generative AI application that produces creative Tamil stories and advertisement content, deployed with Streamlit. Built to show that generative models can work as well in Tamil as they do in English.",
+      tech: ["Generative AI", "Tamil NLP", "Fine-tuning", "Streamlit", "Python"],
       highlights: [
-        "Brand-aligned design",
-        "High-performance interface",
-        "Modern UI/UX standards",
-        "Responsive and scalable",
+        "Creative Tamil story generation",
+        "Advertisement content creation",
+        "Deployed with Streamlit",
+        "Fine-tuned language model",
       ],
-      color: "#818cf8",
+      color: "#D97757",
+    },
+    {
+      title: "Tamil Nadu Citizen Services Chatbot",
+      badge: "Bilingual AI",
+      description:
+        "A bilingual (Tamil and English) chatbot that answers citizen queries about Tamil Nadu government schemes and services, built on a RAG architecture so language is never the barrier to a benefit someone qualifies for.",
+      tech: ["RAG", "Tamil NLP", "LLMs", "Python", "FastAPI"],
+      highlights: [
+        "Bilingual Tamil–English support",
+        "Government schemes information",
+        "RAG architecture",
+        "Multi-department coverage",
+      ],
+      color: "#E08D6F",
     },
   ];
 
@@ -92,9 +92,9 @@ const Projects = () => {
         >
           <span className="section-label">Selected Work</span>
           <h2 className="section-title">Featured Projects</h2>
-          <p className="text-body-lg text-text-secondary max-w-xl mt-4">
-            A selection of projects that showcase my expertise in Generative AI, 
-            full-stack development, and intelligent system design.
+          <p className="prose-serif text-body-lg text-text-secondary max-w-xl mt-4">
+            A selection of projects spanning agentic AI, retrieval-augmented systems,
+            Tamil-language NLP, and production frontend engineering.
           </p>
         </motion.div>
 
@@ -192,7 +192,7 @@ const Projects = () => {
                 </h3>
 
                 {/* Description */}
-                <p className="text-body text-text-secondary leading-relaxed mb-8">
+                <p className="prose-serif text-body text-text-secondary leading-relaxed mb-8">
                   {current.description}
                 </p>
 

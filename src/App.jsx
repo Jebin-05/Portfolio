@@ -26,15 +26,15 @@ function App() {
               <Header />
               <main>
                 <Hero />
-                <SectionDivider fromColor="#0a0a0b" toColor="#0a0a0b" />
+                <SectionDivider fromColor="#1F1E1D" toColor="#1F1E1D" />
                 <Projects />
-                <SectionDivider fromColor="#0a0a0b" toColor="#111113" />
+                <SectionDivider fromColor="#1F1E1D" toColor="#262624" />
                 <Experience />
-                <SectionDivider fromColor="#111113" toColor="#0a0a0b" flip />
+                <SectionDivider fromColor="#262624" toColor="#1F1E1D" flip />
                 <Skills />
-                <SectionDivider fromColor="#0a0a0b" toColor="#111113" />
+                <SectionDivider fromColor="#1F1E1D" toColor="#262624" />
                 <Education />
-                <SectionDivider fromColor="#111113" toColor="#0a0a0b" flip />
+                <SectionDivider fromColor="#262624" toColor="#1F1E1D" flip />
                 <Contact />
               </main>
               <Footer />
